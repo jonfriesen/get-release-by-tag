@@ -12,12 +12,7 @@ async function run() {
     // Remove prefix on release tag
     const tag = releaseTag.replace('refs/tags/', '');
 
-    // const owner = context.repo.owner;
-    // const repo = context.repo.repo;
-    const [owner, repo] = context.repo;
-    // core.debug(`Owner: ${owner} Repo: ${repo} Tag: ${tag}`);
-
-    console.log(`owner: ${owner}, repo: ${repo}`);
+    const { owner, repo } = context.repo;
 
     // Upload a release asset
     // API Documentation: https://developer.github.com/v3/repos/releases/#get-a-single-release-asset

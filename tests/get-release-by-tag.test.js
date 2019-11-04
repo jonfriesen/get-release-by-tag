@@ -35,41 +35,39 @@ describe('Get Release by Tag', () => {
 
     await run();
 
-    expect(getReleaseByTag).toHaveBeenCalled();
-
-    // expect(getReleaseByTag).toHaveBeenCalledWith({
-    //   owner: context.repo.owner,
-    //   repo: context.repo.repo,
-    //   tag: 'refs/tags/v1.0.0'
-    // });
+    expect(getReleaseByTag).toHaveBeenCalledWith({
+      owner: 'owner',
+      repo: 'repo',
+      tag: 'v1.0.0'
+    });
   });
 
-  // test('Output is set', async () => {
-  //   core.getInput = jest.fn().mockReturnValueOnce('tag_name');
+  test('Output is set', async () => {
+    core.getInput = jest.fn().mockReturnValueOnce('refs/tag/v1.0.0');
 
-  //   core.setOutput = jest.fn();
+    core.setOutput = jest.fn();
 
-  //   await run();
+    await run();
 
-  //   expect(core.setOutput).toHaveBeenNthCalledWith(1, 'release', 'releaseRawr');
-  // });
+    expect(core.setOutput).toHaveBeenNthCalledWith(1, 'release', { data: { upload_url: 'http://some.url' } });
+  });
 
-  // test('Action fails elegantly', async () => {
-  //   core.getInput = jest.fn().mockReturnValueOnce('tag_name');
+  test('Action fails elegantly', async () => {
+    core.getInput = jest.fn().mockReturnValueOnce('refs/tags/v1.0.0');
 
-  //   getReleaseByTag.mockRestore();
-  //   getReleaseByTag.mockImplementation(() => {
-  //     throw new Error('Error retrieving release');
-  //   });
+    getReleaseByTag.mockRestore();
+    getReleaseByTag.mockImplementation(() => {
+      throw new Error('Error getting release');
+    });
 
-  //   core.setOutput = jest.fn();
+    core.setOutput = jest.fn();
 
-  //   core.setFailed = jest.fn();
+    core.setFailed = jest.fn();
 
-  //   await run();
+    await run();
 
-  //   expect(getReleaseByTag).toHaveBeenCalled();
-  //   expect(core.setFailed).toHaveBeenCalledWith('Error getting release');
-  //   expect(core.setOutput).toHaveBeenCalledTimes(0);
-  // });
+    expect(getReleaseByTag).toHaveBeenCalled();
+    expect(core.setFailed).toHaveBeenCalledWith('Error getting release');
+    expect(core.setOutput).toHaveBeenCalledTimes(0);
+  });
 });
