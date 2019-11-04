@@ -49,7 +49,7 @@ describe('Get Release by Tag', () => {
 
     await run();
 
-    expect(core.setOutput).toHaveBeenNthCalledWith(1, 'tag', 'v1.0.0');
+    expect(core.setOutput).toHaveBeenNthCalledWith(1, 'formatted_tag', 'v1.0.0');
     expect(core.setOutput).toHaveBeenNthCalledWith(2, 'upload_url', 'http://some.url');
   });
 

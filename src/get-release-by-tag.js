@@ -25,7 +25,9 @@ async function run() {
     });
 
     // Set the output variable for use by other actions: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
-    core.setOutput('tag', tag);
+    core.info(`Setting output formatted_tag: ${tag}`);
+    core.setOutput('formatted_tag', tag);
+    core.info(`Setting output upload_url: ${release.data.upload_url}`);
     core.setOutput('upload_url', release.data.upload_url);
   } catch (error) {
     core.setFailed(error.message);
