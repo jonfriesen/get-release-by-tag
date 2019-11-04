@@ -24,11 +24,9 @@ async function run() {
       tag
     });
 
-    // core.info(`Retrieved release:`);
-    // core.info(JSON.stringify(release));
-
     // Set the output variable for use by other actions: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     core.setOutput('upload_url', release.data.upload_url);
+    core.setOutput('tag_name', tag);
   } catch (error) {
     core.setFailed(error.message);
   }
