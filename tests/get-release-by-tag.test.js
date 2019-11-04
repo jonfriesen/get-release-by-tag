@@ -43,13 +43,14 @@ describe('Get Release by Tag', () => {
   });
 
   test('Output is set', async () => {
-    core.getInput = jest.fn().mockReturnValueOnce('refs/tag/v1.0.0');
+    core.getInput = jest.fn().mockReturnValueOnce('refs/tags/v1.0.0');
 
     core.setOutput = jest.fn();
 
     await run();
 
     expect(core.setOutput).toHaveBeenNthCalledWith(1, 'upload_url', 'http://some.url');
+    expect(core.setOutput).toHaveBeenNthCalledWith(2, 'tag_name', 'v1.0.0');
   });
 
   test('Action fails elegantly', async () => {
