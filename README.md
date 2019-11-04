@@ -1,3 +1,7 @@
+# WARNING
+
+CURRENTLY THIS LIBRARY SETS ONE OUTPUT WHICH IS THE URL_UPLOAD FROM THE RELEASE.
+
 # Foreword
 This project was inspired by official GitHub Actions projects (such as the ones used as examples in this document). I'd like to extend a special thanks to all of the contributors who made this Action possible.
 

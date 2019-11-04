@@ -49,7 +49,7 @@ describe('Get Release by Tag', () => {
 
     await run();
 
-    expect(core.setOutput).toHaveBeenNthCalledWith(1, 'release', { data: { upload_url: 'http://some.url' } });
+    expect(core.setOutput).toHaveBeenNthCalledWith(1, 'upload_url', 'http://some.url');
   });
 
   test('Action fails elegantly', async () => {
