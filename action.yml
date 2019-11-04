@@ -1,0 +1,16 @@
+name: 'Get Release by Tag name'
+description: 'Gets release information by tag name'
+author: 'Jon Friesen'
+inputs:
+  tag_name:
+    description: 'Tag of the release to be retrieved'
+    required: true
+outputs:
+  release:
+    description: 'A JSON formatted release information from the GitHub API'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'package'
+  color: 'gray-dark'
