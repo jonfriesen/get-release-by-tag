@@ -405,12 +405,12 @@ async function run() {
 
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     const releaseTag = core.getInput('tag_name', { required: true });
-    // const releaseTag = 'refs/tags/v1.0.0';
 
     // Remove prefix on release tag
     const tag = releaseTag.replace('refs/tags/', '');
-
     const { owner, repo } = context.repo;
+
+    core.info(`Getting release from tag: ${tag} for ${owner}/${repo}`);
 
     // Upload a release asset
     // API Documentation: https://developer.github.com/v3/repos/releases/#get-a-single-release-asset
@@ -420,6 +420,9 @@ async function run() {
       repo,
       tag
     });
+
+    core.info(`Retrieved release:`);
+    core.info(JSON.stringify(release));
 
     // Set the output variable for use by other actions: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     core.setOutput('release', release);
