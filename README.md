@@ -56,7 +56,7 @@ jobs:
           prerelease: false
       - name: Get Release by Tag
         id: get_release_by_tag
-        uses: jonfriesen/get-release-by-tag@v1.0.0
+        uses: jonfriesen/get-release-by-tag@v0.0.11
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
